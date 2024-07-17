@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    buy
+{% endblock %}
+
+{%block main %}
+<script>
+    window.onload = function() {
+        var amount = "";
+        document.getElementById("amount").innerText = amount;
+        
+    };
+</script>
+
+<div>
+    <h2>Buying Power: {{ amount }} </h2>
+</div>
+<form action="/buy" method="post"class="row row-cols-lg-auto g-3 align-items-center">
+    <div class="buyOptions"></div>
+    
+        <div class="col-12">
+        <div class="input-group">
+            <div class="input-group-text">$</div>
+            <input type="text" class="form-control" id="symbol" name="symbol" placeholder="Enter Ticker Symbol" minlength="1" maxlength="4" required>
+        </div>
+        </div>
+
+        <div class="col-12">
+            <div class="input-group">
+            <input type="text" class="form-control" id="shares" name="shares" placeholder="Enter Quantity" minlength="1" maxlength="4" required>
+        </div>
+
+        
+
+    </div>
+
+    <div><button class="btn btn-primary" type="submit">Go</button></div>
+    
+    
+</form>
+
+{% endblock %}

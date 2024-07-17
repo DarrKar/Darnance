@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    transactions
+{% endblock %}
+
+
+{% block main %}
+<style>
+    .curHoldings {
+        text-align:left;
+    }
+
+    .userWelcome {
+        text-align: left;
+    }
+
+   
+    #port {
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin: auto;
+    }
+
+    #port tr:nth-child(even){background-color: #f2f2f2;}
+    #port tr:hover {background-color: #ddd;}
+
+    #port td, #port th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #port th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
+
+   
+</style>
+
+<div class="transTitle">
+    <h1>Previous Transactions</h1>
+</div>
+<br>
+
+
+<div class="transactionList">
+    <table id="port">
+        <tr>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Stock</th>
+            <th>Shares</th>
+            <!-- <th> Average Cost </th> -->
+            <th>Price</th>
+            <th>Total Value</th>
+
+        </tr>
+        {% for item in transactions %}
+            <tr>
+                <td>{{ item["type"] }} </td>
+                <td>{{ item["date"] }} </td>
+                <td>{{ item["ticker"] }}</td>
+                <td>{{ item["quantity"] }} </td>
+                <td>{{ item["price"] }} </td>
+                <td>{{ item["total"] }} </td>
+
+
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

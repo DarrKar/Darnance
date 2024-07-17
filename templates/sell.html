@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title%}
+    sell
+{% endblock %}
+
+{%block main %}
+<style>
+    #quantity {
+        width: 100px;
+    }
+</style>
+
+<script>
+    function showInput() {
+        var selectBox = document.getElementById("stockList");
+        var inputBox = document.getElementById("shares");
+        var defaultOption = document.getElementById("default");
+        // If the selected option is "Yes", show the input box
+
+        if (selectBox.value !== "default") {
+            defaultOption.style.display = "block";
+        } else {
+            defaultOption.style.display = "none";
+        }
+
+        if (selectBox.value !== "Stock") {
+            inputBox.style.display = "block";
+        } else {
+            inputBox.style.display = "none";
+        }
+    }
+</script>
+
+<form action="/sell" method="post">
+    <div class="sellOptions">
+
+        <label for="stockList">Select a stock to sell</label>
+        <br>
+        <select name="stockList" id="stockList" onchange="showInput()" required>
+            <option value="default" id="default" disabled selected value="">Stock</option>
+            {% for i in holdings %}
+            <option>{{ i["ticker"] }}</option>
+
+            {% endfor %}
+        </select>
+
+        <div id="shares" style="display: none;">
+            <label for="quantity"> Enter the number of shares</label>
+            <br>
+            <input type="number" id="quantity" name="quantity">
+        </div>
+        <br>
+        <div id="submitBtn">
+            <input type="submit" value="Sell">
+        </div>
+
+       
+
+        
+
+    </div>
+    
+    
+</form>
+
+{% endblock %}
